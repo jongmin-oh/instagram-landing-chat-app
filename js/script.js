@@ -39,3 +39,22 @@ messageInput.addEventListener('keypress', (e) => {
         sendMessage();
     }
 });
+
+function resizeChat() {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+window.addEventListener('resize', resizeChat);
+window.addEventListener('orientationchange', resizeChat);
+
+// 초기 실행
+resizeChat();
+
+// 입력 필드에 포커스가 가면 스크롤을 맨 아래로 이동
+document.getElementById('message-input').addEventListener('focus', () => {
+    setTimeout(() => {
+        window.scrollTo(0, document.body.scrollHeight);
+        messageContainer.scrollTop = messageContainer.scrollHeight;
+    }, 300); // 키보드가 완전히 올라올 때까지 약간의 지연 시간을 줍니다
+});
