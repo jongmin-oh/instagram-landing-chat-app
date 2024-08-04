@@ -2,16 +2,50 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    background-color: #000;
+    color: #fff;
 }
 
 .chat-container {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
-    background-color: white;
+    background-color: #121212;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(255,255,255,0.1);
+}
+
+.chat-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #2c2c2c;
+    padding-bottom: 10px;
+}
+
+.profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.chat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-title {
+    margin: 0;
+    font-size: 1.17em;
+    color: #fff;
+}
+
+.chat-subtitle {
+    margin: 0;
+    font-size: 0.8em;
+    color: #a8a8a8;
 }
 
 .message-container {
@@ -36,38 +70,55 @@ body {
 
 .user-message {
     margin-left: auto;
-    background-color: #dcf8c6;
+    background-color: #0095f6;
+    color: #fff;
 }
 
 .echo-message {
-    background-color: #e5e5ea;
+    background-color: #262626;
+    color: #fff;
     margin-left: 10px;
-}
-
-.profile-image {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
 }
 
 .input-container {
     display: flex;
+    border-top: 1px solid #2c2c2c;
+    padding-top: 10px;
 }
 
 #message-input {
     flex-grow: 1;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: none;
+    border-radius: 20px;
+    background-color: #262626;
+    color: #fff;
+}
+
+#message-input::placeholder {
+    color: #8e8e8e;
 }
 
 #send-button {
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: #0095f6;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     margin-left: 10px;
     cursor: pointer;
+}
+
+/* 스크롤바 스타일링 */
+.message-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.message-container::-webkit-scrollbar-track {
+    background: #121212;
+}
+
+.message-container::-webkit-scrollbar-thumb {
+    background-color: #2c2c2c;
+    border-radius: 4px;
 }
