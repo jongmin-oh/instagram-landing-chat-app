@@ -34,7 +34,8 @@ function sendMessage() {
     if (message) {
         addMessage(message, true);
         setTimeout(() => addMessage(message, false), 1000);
-        messageInput.value = '';
+        messageInput.value = ''; // Clear the input field
+        messageInput.focus(); // Focus the input field
     }
 }
 
