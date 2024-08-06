@@ -7,6 +7,9 @@ messageContainer.style.display = 'flex';
 messageContainer.style.flexDirection = 'column-reverse';
 messageContainer.style.overflowY = 'auto';
 
+let messageCount = 0;
+let chatHistory = [];
+
 function addMessage(message, isUser) {
     const messageWrapper = document.createElement('div');
     messageWrapper.classList.add('message-wrapper');
@@ -27,19 +30,26 @@ function addMessage(message, isUser) {
 
     // 새 메시지를 컨테이너의 맨 위에 추가
     messageContainer.insertBefore(messageWrapper, messageContainer.firstChild);
+
+    messageCount++;
 }
 
-function chatbotResponse() {
+function chatbotResponse(chatHistory) {
+    if (chatHistory > 20){
+        return "제한";
+    }
     return "대답";
 }
 
 function sendMessage() {
     const message = messageInput.value.trim();
+    chatHistory.push({ role: "user", content: message });
     if (message) {
         addMessage(message, true);
         setTimeout(() => {
-            const response = chatbotResponse();
+            const response = chatbotResponse(chatHistory);
             addMessage(response, false);
+            chatHistory.push({ role: "assistant", content: response });
         }, 1000);
         messageInput.value = ''; // Clear the input field
         messageInput.focus(); // Focus the input field
