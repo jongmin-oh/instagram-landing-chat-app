@@ -9,6 +9,7 @@ messageContainer.style.overflowY = 'auto';
 
 let messageCount = 0;
 let chatHistory = [];
+let isWaitingForResponse = false;
 
 function addMessage(message, isUser) {
     const messageWrapper = document.createElement('div');
@@ -42,19 +43,44 @@ function chatbotResponse(chatHistory) {
 }
 
 function sendMessage() {
+    if (isWaitingForResponse) return;
+
     const message = messageInput.value.trim();
-    chatHistory.push({ role: "user", content: message });
     if (message) {
+        isWaitingForResponse = true;
+        disableInput();
+
+        chatHistory.push({ role: "user", content: message });
         addMessage(message, true);
+        
         setTimeout(() => {
             const response = chatbotResponse(chatHistory);
             addMessage(response, false);
             chatHistory.push({ role: "assistant", content: response });
+            
+            isWaitingForResponse = false;
+            enableInput();
         }, 1000);
-        messageInput.value = ''; // Clear the input field
-        messageInput.focus(); // Focus the input field
+
+        messageInput.value = '';
+        messageInput.focus();
     }
 }
+
+function disableInput() {
+    sendButton.disabled = true;
+}
+
+function enableInput() {
+    sendButton.disabled = false;
+}
+
+sendButton.addEventListener('click', sendMessage);
+messageInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' && !isWaitingForResponse) {
+        sendMessage();
+    }
+});
 
 sendButton.addEventListener('click', sendMessage);
 messageInput.addEventListener('keypress', (e) => {
