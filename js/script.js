@@ -21,7 +21,7 @@ function addMessage(message, isUser) {
 
     const messageElement = document.createElement('div');
     messageElement.classList.add('message');
-    messageElement.classList.add(isUser ? 'user-message' : 'echo-message');
+    messageElement.classList.add(isUser ? 'user-message' : 'chatbot-message');
     messageElement.textContent = message;
     messageWrapper.appendChild(messageElement);
 
@@ -29,11 +29,18 @@ function addMessage(message, isUser) {
     messageContainer.insertBefore(messageWrapper, messageContainer.firstChild);
 }
 
+function chatbotResponse() {
+    return "대답";
+}
+
 function sendMessage() {
     const message = messageInput.value.trim();
     if (message) {
         addMessage(message, true);
-        setTimeout(() => addMessage(message, false), 1000);
+        setTimeout(() => {
+            const response = chatbotResponse();
+            addMessage(response, false);
+        }, 1000);
         messageInput.value = ''; // Clear the input field
         messageInput.focus(); // Focus the input field
     }
