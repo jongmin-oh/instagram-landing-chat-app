@@ -7,7 +7,6 @@ messageContainer.style.display = 'flex';
 messageContainer.style.flexDirection = 'column-reverse';
 messageContainer.style.overflowY = 'auto';
 
-let messageCount = 0;
 let chatHistory = [];
 let isWaitingForResponse = false;
 
@@ -31,8 +30,6 @@ function addMessage(message, isUser) {
 
     // 새 메시지를 컨테이너의 맨 위에 추가
     messageContainer.insertBefore(messageWrapper, messageContainer.firstChild);
-
-    messageCount++;
 }
 
 function chatbotResponse(chatHistory) {
