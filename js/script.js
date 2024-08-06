@@ -79,13 +79,6 @@ messageInput.addEventListener('keypress', (e) => {
     }
 });
 
-sendButton.addEventListener('click', sendMessage);
-messageInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        sendMessage();
-    }
-});
-
 function resizeChat() {
     const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
