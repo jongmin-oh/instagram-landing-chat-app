@@ -1,2 +1,2 @@
-# simple-chat-app
+# instagram-landing-chat-app
 Chatting app for AI influencer
