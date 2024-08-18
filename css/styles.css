@@ -30,6 +30,22 @@ body {
     bottom: 0;
 }
 
+.voice-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #007bff;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.voice-button.playing {
+    color: #dc3545;
+}
+
 .chat-header {
     display: flex;
     align-items: center;

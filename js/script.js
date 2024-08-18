@@ -95,3 +95,27 @@ document.getElementById('message-input').addEventListener('focus', () => {
         window.scrollTo(0, document.body.scrollHeight);
     }, 300);
 });
+
+const voiceButton = document.getElementById('voice-button');
+let source = "https://hanul-voice.s3.ap-northeast-2.amazonaws.com/%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%AE%E1%86%AF_%E1%84%8C%E1%85%A1%E1%84%80%E1%85%B5%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2_%E1%84%87%E1%85%A1%E1%86%AB%E1%84%86%E1%85%A1%E1%86%AF.wav"
+let audio = new Audio(source);
+let isPlaying = false;
+
+voiceButton.addEventListener('click', toggleAudio);
+
+function toggleAudio() {
+    if (isPlaying) {
+        audio.pause();
+        audio.currentTime = 0;
+        voiceButton.classList.remove('playing');
+    } else {
+        audio.play();
+        voiceButton.classList.add('playing');
+    }
+    isPlaying = !isPlaying;
+}
+
+audio.addEventListener('ended', () => {
+    isPlaying = false;
+    voiceButton.classList.remove('playing');
+});
